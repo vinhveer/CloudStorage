@@ -25,14 +25,8 @@
 	</style>
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col font-sans">
-	<header class="bg-white shadow p-4 mb-6">
-		<h1 class="text-2xl font-bold text-gray-800">@yield('header', config('app.name', 'Laravel'))</h1>
-	</header>
-	<main class="flex-1 container mx-auto px-4">
+	<main class="flex-1 container mx-auto px-4 py-12">
 		@yield('content')
 	</main>
-	<footer class="bg-white shadow p-4 mt-6 text-center text-gray-500">
-		&copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}
-	</footer>
 </body>
 </html>
