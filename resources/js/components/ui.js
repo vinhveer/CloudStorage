@@ -106,17 +106,29 @@ document.addEventListener('alpine:init', () => {
 
 // Utility functions
 window.UIHelpers = {
-    // Smooth scroll to element
-    scrollTo(elementId, offset = 0) {
-        const element = document.getElementById(elementId);
-        if (element) {
-            const top = element.offsetTop - offset;
-            window.scrollTo({ top, behavior: 'smooth' });
-        }
-    },
-    
-    // Copy text to clipboard
-    async copyToClipboard(text) {
+    debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+};
+
+window.UIHelpers.scrollTo = function(elementId, offset = 0) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        const top = element.offsetTop - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+    }
+};
+
+// Copy text to clipboard
+window.UIHelpers.copyToClipboard = async function(text) {
         try {
             await navigator.clipboard.writeText(text);
             return true;
@@ -129,25 +141,24 @@ window.UIHelpers = {
             const successful = document.execCommand('copy');
             document.body.removeChild(textArea);
             return successful;
-        }
-    },
-    
-    // Format file size
-    formatFileSize(bytes) {
-        if (bytes === 0) return '0 Bytes';
-        const k = 1024;
-        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-    },
-    
-    // Format date
-    formatDate(date, options = {}) {
-        const defaultOptions = {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric'
-        };
-        return new Intl.DateTimeFormat('en-US', { ...defaultOptions, ...options }).format(new Date(date));
     }
+};
+
+// Format file size
+window.UIHelpers.formatFileSize = function(bytes) {
+    if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+};
+
+// Format date
+window.UIHelpers.formatDate = function(date, options = {}) {
+    const defaultOptions = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+    };
+    return new Intl.DateTimeFormat('en-US', { ...defaultOptions, ...options }).format(new Date(date));
 };

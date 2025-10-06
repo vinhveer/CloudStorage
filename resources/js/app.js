@@ -1,12 +1,13 @@
 import './bootstrap';
 
-// Import all component JavaScript files
-import './components/modal';
-import './components/file-list';
-import './components/forms';
-import './components/ui';
+import Alpine from 'alpinejs';
 
-// Initialize application
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('CloudStorage App Initialized');
-});
+import './components/search.js';
+import './components/ui.js';
+import './components/modal.js';
+import './components/forms.js';
+import './components/file-list.js';
+
+window.Alpine = Alpine;
+
+Alpine.start();

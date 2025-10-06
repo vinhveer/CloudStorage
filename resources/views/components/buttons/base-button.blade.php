@@ -18,6 +18,8 @@
         'sm' => $isCircular ? 'w-8 h-8 text-xs' : 'px-3 py-1.5 text-xs',
         'md' => $isCircular ? 'w-10 h-10 text-sm' : 'px-4 py-2 text-sm',
         'lg' => $isCircular ? 'w-12 h-12 text-base' : 'px-6 py-2.5 text-base',
+        'xl' => $isCircular ? 'w-14 h-14 text-lg' : 'px-8 py-3 text-lg',
+        '2xl' => $isCircular ? 'w-16 h-16 text-xl' : 'px-10 py-4 text-xl',
         default => $isCircular ? 'w-10 h-10 text-sm' : 'px-4 py-2 text-sm'
     };
 @endphp

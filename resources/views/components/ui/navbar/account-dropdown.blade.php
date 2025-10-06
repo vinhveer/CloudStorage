@@ -1,4 +1,4 @@
-@props(['userName' => 'Nguyen Quang Vinh', 'userEmail' => 'contact.nguyenquangvinh@gmail.com', 'userAvatar' => null])
+@props(['userName' => Auth::user()->name ?? 'User', 'userEmail' => Auth::user()->email ?? 'user@example.com', 'userAvatar' => null])
 
 @php
     // Generate initials from name
@@ -45,14 +45,28 @@
         
         <!-- Menu Items -->
         <div class="py-1">
-            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+            <a href="{{ route('settings') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
                 <i class="fas fa-cog mr-3 text-gray-400"></i>
                 Account Settings
             </a>
-            <a href="#" class="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors">
+            <button @click="openModal('logout-modal')" class="w-full flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors">
                 <i class="fas fa-sign-out-alt mr-3"></i>
                 Logout
-            </a>
+            </button>
+            
+            <form id="logout-form" method="POST" action="{{ route('logout') }}" class="hidden">
+                @csrf
+            </form>
+            
+            <x-overlays.modal-confirm
+                id="logout-modal"
+                title="Logout"
+                confirmText="Are you sure you want to logout?"
+                confirmButtonText="Logout"
+                cancelButtonText="Cancel"
+                confirmHref="javascript:document.getElementById('logout-form').submit();"
+                confirmType="danger"
+            />
         </div>
     </div>
 </div>

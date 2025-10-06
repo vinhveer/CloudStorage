@@ -1,4 +1,4 @@
-@extends('app-layout')
+@extends('layout.app-layout')
 
 @section('title', 'Form Components')
 @section('navbarTitle', 'CloudStorage')

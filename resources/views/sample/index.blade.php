@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layout.layout')
 
 @section('title', 'Sample Page')
 @section('header', 'Sample Page')
@@ -39,9 +39,9 @@
         <div>
             <h4 class="text-base font-semibold text-gray-700 mb-3">Modal Confirmation:</h4>
             <div class="space-x-2">
-                <x-buttons.button-link-modal value="Delete Item" href="#" type="danger" icon="fas fa-trash" confirmText="Are you sure you want to delete this item?" confirmButtonText="Delete" cancelButtonText="Cancel" />
-                <x-buttons.button-link-modal value="Logout" href="#" type="secondary" icon="fas fa-sign-out-alt" confirmText="Are you sure you want to logout?" confirmButtonText="Logout" cancelButtonText="Stay" />
-                <x-buttons.button-link-modal value="Reset" href="#" type="primary" icon="fas fa-undo" confirmText="This will reset all settings. Continue?" confirmButtonText="Reset" cancelButtonText="Cancel" />
+                <x-buttons.button-confirm value="Delete Item" href="#" type="danger" icon="fas fa-trash" confirmText="Are you sure you want to delete this item?" confirmButtonText="Delete" cancelButtonText="Cancel" />
+                <x-buttons.button-confirm value="Logout" href="#" type="secondary" icon="fas fa-sign-out-alt" confirmText="Are you sure you want to logout?" confirmButtonText="Logout" cancelButtonText="Stay" />
+                <x-buttons.button-confirm value="Reset" href="#" type="primary" icon="fas fa-undo" confirmText="This will reset all settings. Continue?" confirmButtonText="Reset" cancelButtonText="Cancel" />
             </div>
         </div>
     </div>

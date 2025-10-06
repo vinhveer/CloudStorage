@@ -7,7 +7,7 @@
 
 <x-buttons.base-button tag="button" type="button" :type="$type" :size="$size" :icon="$icon" :value="$value" onclick="openModal('{{ $modalId }}')" {{ $attributes }} />
 
-<x-overlays.modal 
+<x-overlays.modal-confirm 
     :id="$modalId" 
     :title="$modalTitle" 
     :confirmText="$confirmText" 
